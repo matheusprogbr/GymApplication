@@ -1,0 +1,69 @@
+{% extends "layout.njk" %}
+
+{% block content %}
+  <form class="card" method="POST" action="/instructors">
+
+    <div class="container">
+
+      <div class="avatar"></div>
+
+      <div class="details">
+        <h2 class="subtitle">Cadastro de Instrutor</h2>
+
+        <div class="item">
+          <span>Avatar:</span>
+          <div>
+            <input 
+              type="url" 
+              name="avatar_url"
+              placeholder="https://www.imagens.com/id"
+            >
+          </div>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Instrutor:</span>
+          <div>
+            <input 
+              type="text" 
+              name="name"
+              placeholder="Nome do instrutor"
+              autocomplete="off"
+            >
+          </div>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Data de nascimento:</span>
+          <div>
+            <input 
+              type="date" 
+              name="birth"
+            >
+          </div>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Sexo:</span>
+          <ul class="gender-selection">
+            <li><input type="radio" name="gender" value="M" checked>Masculino</li>
+            <li><input type="radio" name="gender" value="F">Feminino</li>
+          </ul>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Área de atuação:</span>
+          <div>
+            <input 
+              type="text" 
+              name="services"
+              placeholder="Ex:Crossfit, Musculação"
+            >
+          </div>
+        </div><!-- item end -->
+      
+      <button type="submit" class="form-button">Enviar</button>
+      </div><!-- details end -->
+    </div><!-- container end -->
+  </form>
+{% endblock content %}

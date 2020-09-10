@@ -1,0 +1,49 @@
+{% extends 'layout.njk' %}
+
+{% block navlinks %}
+  <li><a href="/" class="active">Instructors</a></li>
+  <li><a href="/members">Members</a></li>
+{% endblock %}
+
+{% block content %}
+  <section class="card">
+
+    <div class="container">
+
+      <div class="avatar"></div>
+
+      <div class="details">
+        <h2 class="subtitle">Detalhes</h2>
+
+        <div class="item">
+          <span>Instrutor:</span>
+          <span>Guilherme Saraiva</span>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Idade:</span>
+          <span>29</span>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Sexo:</span>
+          <span>Masculino</span>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Acompanhamento:</span>
+          <ul class="item-gym-list">
+            <li>Musculação</li>
+            <li>Crossfit</li>
+          </ul>
+        </div><!-- item end -->
+
+        <div class="item">
+          <span>Desde -</span>
+          <span>01/01/2019</span>
+        </div><!-- item end -->
+      
+      </div><!-- details end -->
+    </div><!-- container end -->
+  </section>
+{% endblock content %}
