@@ -76,6 +76,10 @@ body{
   align-items: center;
 }
 
+.logo-container{
+  max-width: 20%;
+}
+
 .menu ul{
   display: grid;
   grid-template-columns: repeat(2,1fr);

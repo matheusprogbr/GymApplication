@@ -1,0 +1,22 @@
+{
+  "instructors": [
+    {
+      "id": 1,
+      "name": "José Alencar",
+      "gender": "M",
+      "birth": 10454400000,
+      "services": "Crossfit, Musculação",
+      "avatar_url": "https:/www.google.com",
+      "created_at": 1599796817177
+    },
+    {
+      "id": 2,
+      "name": "Felipe Marcelo",
+      "gender": "M",
+      "birth": 974246400000,
+      "services": "Crossfit, Musculação",
+      "avatar_url": "https://www.facebook.com",
+      "created_at": 1599859511821
+    }
+  ]
+}
