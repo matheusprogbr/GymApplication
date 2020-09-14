@@ -280,6 +280,29 @@ form input::placeholder{
   cursor: pointer;
 }
 
+/* SHOW */
+.edit-btn{
+  width: 100%;
+  display: block;
+
+  border: none;
+  border-radius: .5rem;
+  background-color: var(--primary-color);
+
+  margin-top: 2rem;
+  padding: .5rem 2rem;
+
+  text-transform: uppercase;
+  text-align: center;
+
+  font-weight: bold;
+  letter-spacing: .1rem;
+
+  color: var(--button-color);
+
+  cursor: pointer;
+}
+
 /* MEDIA QUERYS */
 @media(max-width:375px){
 

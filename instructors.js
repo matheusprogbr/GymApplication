@@ -1,9 +1,10 @@
 const fs = require('fs');
 const data = require('./data.json');
+const {age, gender} = require('./utils');
 
 // SHOW
 exports.show = (req,res) => {
-  let { id } = req.params;
+  const { id } = req.params;
 
   const foundInstructor = data.instructors.find((instructor) => {
     return id == instructor.id;
@@ -13,13 +14,22 @@ exports.show = (req,res) => {
 
   const instructor = {
     ...foundInstructor, // get all the properties of the object and copy to instructor, but i will rewrite some of the values
-    age:'',             
-    gender:'',          // rewrite the value of gender
-    services:'',        // rewrite the value of services
-    created_at:'',      // rewrite the value of created_at
+    gender:gender(foundInstructor.gender),
+    age:age(foundInstructor.birth),             
+    services:foundInstructor.services.split(','),        // rewrite the value of services
+    created_at: new Intl.DateTimeFormat('pt-BR').format(foundInstructor.created_at),      // rewrite the value of created_at
   };
 
   return res.render('instructors/show',{ instructor });
+}
+
+// EDIT
+exports.edit =  (req,res) => {
+  
+
+
+
+  return res.render('instructors/edit', {data});
 }
 
 // VALIDAÇÃO e CRIAÇÃO
