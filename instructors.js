@@ -1,6 +1,6 @@
 const fs = require('fs');
 const data = require('./data.json');
-const {age, gender} = require('./utils');
+const {age, gender, birth} = require('./utils');
 
 // SHOW
 exports.show = (req,res) => {
@@ -25,11 +25,22 @@ exports.show = (req,res) => {
 
 // EDIT
 exports.edit =  (req,res) => {
-  
+  const { id } = req.params;
 
+  const foundInstructor = data.instructors.find((instructor) => {
+    return id == instructor.id;
+  });
 
+  if(!foundInstructor) return res.send('Instructor not found!');
 
-  return res.render('instructors/edit', {data});
+  const instructor = {
+    ...foundInstructor,
+    birth:birth(foundInstructor.birth)
+  };
+
+  console.log(instructor.birth);
+
+  return res.render('instructors/edit', { instructor });
 }
 
 // VALIDAÇÃO e CRIAÇÃO
@@ -59,7 +70,7 @@ exports.post = (req,res) => {
   fs.writeFile('data.json', JSON.stringify(data,null, 2), (err) => {
     if(err) return res.send('Write file error!');
 
-    return res.redirect("/instructors");
+    return res.redirect(`/instructors/${id}`);
   });
 
   // return res.send(req.body);
