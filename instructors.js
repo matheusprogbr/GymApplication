@@ -2,6 +2,38 @@ const fs = require('fs');
 const data = require('./data.json');
 const {age, gender, birth} = require('./utils');
 
+// VALIDAÇÃO e CRIAÇÃO
+exports.post = (req,res) => {
+  const keys = Object.keys(req.body);
+  for(key of keys){
+    if(req.body[key]==='')
+      return res.send('Preencha todos os campos!');
+  };
+
+  let {avatar_url,birth,name,services,gender} = req.body; // destructuring the object into variables
+
+  birth = Date.parse(req.body.birth);
+  const created_at = Date.now(); //get actual time of the app
+  const id = Number(data.instructors.length+1);
+
+  data.instructors.push({
+    id,
+    name,
+    gender,
+    birth,
+    services,
+    avatar_url,
+    created_at
+  });
+
+  fs.writeFile('data.json', JSON.stringify(data,null, 2), (err) => {
+    if(err) return res.send('Write file error!');
+
+    return res.redirect(`/instructors/${id}`);
+  });
+
+}
+
 // SHOW
 exports.show = (req,res) => {
   const { id } = req.params;
@@ -38,40 +70,36 @@ exports.edit =  (req,res) => {
     birth:birth(foundInstructor.birth)
   };
 
-  console.log(instructor.birth);
-
   return res.render('instructors/edit', { instructor });
 }
 
-// VALIDAÇÃO e CRIAÇÃO
-exports.post = (req,res) => {
+// PUT
+exports.put = (req,res) => {
+  const { id } = req.body;
+
   const keys = Object.keys(req.body);
   for(key of keys){
-    if(req.body[key]==='')
-      return res.send('Preencha todos os campos!');
-  };
+    if(req.body[key] == '') return res.send('Preencha todos os campos');
+  }
 
-  let {avatar_url,birth,name,services,gender} = req.body; // destructuring the object into variables
-
-  birth = Date.parse(req.body.birth);
-  const created_at = Date.now(); //get actual time of the app
-  const id = Number(data.instructors.length+1);
-
-  data.instructors.push({
-    id,
-    name,
-    gender,
-    birth,
-    services,
-    avatar_url,
-    created_at
+  const foundInstructor = data.instructors.find((instructor) => {
+    return id == instructor.id;
   });
 
-  fs.writeFile('data.json', JSON.stringify(data,null, 2), (err) => {
-    if(err) return res.send('Write file error!');
+  if(!foundInstructor) return res.send('Instructor not found!');
+
+  const instructor = {
+    ...foundInstructor,
+    ...req.body,
+    birth: Date.parse(req.body.birth)
+  };
+
+  data.instructors[id - 1] = instructor;
+
+  fs.writeFile('data.json', JSON.stringify(data, null , 2) , (err) => {
+    if(err) return res.send('An error ocurred in the file system!');
 
     return res.redirect(`/instructors/${id}`);
   });
 
-  // return res.send(req.body);
 }
