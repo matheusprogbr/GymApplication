@@ -1,6 +1,12 @@
 const fs = require('fs');
-const data = require('./data.json');
-const {age, gender, birth} = require('./utils');
+const data = require('../data.json');
+const {age, gender, birth} = require('../utils');
+
+// INDEX
+exports.index = (req,res) => {
+
+  return res.render('instructors/index', { instructors:data.instructors });
+}
 
 // VALIDAÇÃO e CRIAÇÃO
 exports.post = (req,res) => {
@@ -75,15 +81,19 @@ exports.edit =  (req,res) => {
 
 // PUT
 exports.put = (req,res) => {
-  const { id } = req.body;
+  let { id } = req.body;
+  let index = 0;
 
   const keys = Object.keys(req.body);
   for(key of keys){
     if(req.body[key] == '') return res.send('Preencha todos os campos');
   }
 
-  const foundInstructor = data.instructors.find((instructor) => {
-    return id == instructor.id;
+  const foundInstructor = data.instructors.find((instructor, foundIndex) => {
+    if(id == instructor.id){
+      index = foundIndex;
+      return true;
+    }
   });
 
   if(!foundInstructor) return res.send('Instructor not found!');
@@ -91,10 +101,11 @@ exports.put = (req,res) => {
   const instructor = {
     ...foundInstructor,
     ...req.body,
-    birth: Date.parse(req.body.birth)
+    birth: Date.parse(req.body.birth),
+    id:Number(req.body.id)
   };
 
-  data.instructors[id - 1] = instructor;
+  data.instructors[index] = instructor;
 
   fs.writeFile('data.json', JSON.stringify(data, null , 2) , (err) => {
     if(err) return res.send('An error ocurred in the file system!');
@@ -103,3 +114,22 @@ exports.put = (req,res) => {
   });
 
 }
+
+// DELETE
+exports.delete = (req,res) => {
+  const { id } = req.body;
+
+  const filteredInstructors = data.instructors.filter((instructor) => {
+    return instructor.id != id;
+  })
+
+  data.instructors = filteredInstructors;
+
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), (err) => {
+    if(err) return res.send('Error!');
+
+    return res.redirect('/instructors');
+  });
+}
+
+
