@@ -312,7 +312,7 @@ tbody tr td:first-child span{
 }
 
 /* CREATE */
-form input{
+form input,select{
   width: 100%;
   padding: .5rem 1rem;
   outline: none;
@@ -387,6 +387,8 @@ form input::placeholder{
   margin-top: 0;
 
   background-color: var(--delete-bg);
+
+  outline: none;
   
 }
 
@@ -407,8 +409,8 @@ form input::placeholder{
 
   /* INDEX */
 
-  .table thead tr th:nth-child(2),
-  .table tbody tr td:nth-child(2){
+  .table thead tr .services,
+  .table tbody tr .services{
     display: none;
   }
 

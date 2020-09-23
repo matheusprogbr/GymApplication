@@ -19,15 +19,6 @@
       "created_at": 1600010810415
     },
     {
-      "id": 3,
-      "name": "Luana Ferreira",
-      "gender": "F",
-      "birth": 969494400000,
-      "services": "Natação, Musculação",
-      "avatar_url": "https://images.unsplash.com/photo-1550259979-ed79b48d2a30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      "created_at": 1600122370005
-    },
-    {
       "id": 4,
       "name": "João Alves da Silva",
       "gender": "M",
@@ -56,13 +47,25 @@
     },
     {
       "id": 7,
-      "name": "Julia Ferreira",
+      "name": "Arícia Marques",
       "gender": "F",
-      "birth": 966556800000,
-      "services": "Crossfit, Musculação",
-      "avatar_url": "https://images.unsplash.com/photo-1518605360659-2aa9659ef66d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-      "created_at": 1600210318408
+      "birth": 645667200000,
+      "services": "Ginástica, Natação",
+      "avatar_url": "https://images.unsplash.com/photo-1546483875-ad9014c88eba?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
+      "created_at": 1600627177207
     }
   ],
-  "members":[]
+  "members": [
+    {
+      "id": 1,
+      "avatar_url": "https://images.unsplash.com/photo-1518605360659-2aa9659ef66d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=718&q=80",
+      "name": "Nilcea",
+      "email": "nilcea@gmail.com",
+      "birth": -19094400000,
+      "gender": "F",
+      "blood": "A+",
+      "weight": "60",
+      "height": "170"
+    }
+  ]
 }

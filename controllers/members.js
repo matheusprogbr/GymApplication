@@ -21,20 +21,20 @@ exports.post = (req,res) => {
       return res.send('Preencha todos os campos!');
   };
 
-  let {avatar_url,birth,name,services,gender} = req.body; // destructuring the object into variables
+  let { birth } = req.body; // destructuring the object into variables
 
-  birth = Date.parse(req.body.birth);
-  const created_at = Date.now(); //get actual time of the app
-  const id = Number(data.members.length+1);
+  birth = Date.parse(birth);
+  let id = 1;
+  const lastMember = data.members[data.members.length - 1];
+
+  if(lastMember){
+    id = lastMember.id + 1;
+  }
 
   data.members.push({
     id,
-    name,
-    gender,
-    birth,
-    services,
-    avatar_url,
-    created_at
+    ...req.body,
+    birth
   });
 
   fs.writeFile('data.json', JSON.stringify(data,null, 2), (err) => {
@@ -58,7 +58,8 @@ exports.show = (req,res) => {
   const member = {
     ...foundMember, // get all the properties of the object and copy to member, but i will rewrite some of the values
     gender:gender(foundMember.gender),
-    age:age(foundMember.birth),             
+    age:age(foundMember.birth),
+    birthDay:birth(foundMember.birth).birthDay             
   };
 
   return res.render('members/show',{ member });
@@ -76,7 +77,7 @@ exports.edit =  (req,res) => {
 
   const member = {
     ...foundMember,
-    birth:birth(foundMember.birth)
+    birth:birth(foundMember.birth).iso
   };
 
   return res.render('members/edit', { member });

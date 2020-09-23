@@ -20,7 +20,12 @@ exports.post = (req,res) => {
 
   birth = Date.parse(req.body.birth);
   const created_at = Date.now(); //get actual time of the app
-  const id = Number(data.instructors.length+1);
+  let id = 1;
+  const lastInstructor = data.instructors[data.instructors.length-1];
+
+  if(lastInstructor){
+    id = lastInstructor.id + 1;
+  }
 
   data.instructors.push({
     id,
@@ -73,7 +78,7 @@ exports.edit =  (req,res) => {
 
   const instructor = {
     ...foundInstructor,
-    birth:birth(foundInstructor.birth)
+    birth:birth(foundInstructor.birth).iso
   };
 
   return res.render('instructors/edit', { instructor });

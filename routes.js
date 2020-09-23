@@ -29,5 +29,15 @@ routes.get('/members',members.index);
 
 routes.get('/members/create', members.create);
 
+routes.post('/members',members.post);
+
+routes.put('/members',members.put);
+
+routes.delete('/members',members.delete);
+
+routes.get('/members/:id', members.show);
+
+routes.get('/members/:id/edit', members.edit);
+
 
 module.exports = routes;

@@ -16,7 +16,7 @@
         <thead>
           <tr>
             <th>Instructor</th>
-            <th>Atendimento</th>
+            <th class="services">Atendimento</th>
             <th>Acessar</th>
           </tr>
         </thead>
@@ -27,7 +27,7 @@
                 <span style="background-image:url({{instructor.avatar_url}})"></span>
                 {{instructor.name}}
               </td>
-              <td>{{instructor.services}}</td>
+              <td class="services">{{instructor.services}}</td>
               <td><a href="/instructors/{{instructor.id}}" class="see-btn">ver</a></td>
             </tr>
           {% endfor %}
